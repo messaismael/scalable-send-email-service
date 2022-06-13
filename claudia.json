@@ -1,0 +1,11 @@
+{
+  "lambda": {
+    "role": "sqs-service-executor",
+    "name": "sqs-service",
+    "region": "us-east-1"
+  },
+  "api": {
+    "id": "1qlacfx5f0",
+    "module": "build/index"
+  }
+}
