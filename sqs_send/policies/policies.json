@@ -1,0 +1,18 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "sqs:DeleteMessage",
+                "sqs:ChangeMessageVisibility",
+                "sqs:PurgeQueue",
+                "sqs:DeleteQueue",
+                "sqs:SendMessage",
+                "sqs:CreateQueue",
+                "sqs:SetQueueAttributes"
+            ],
+            "Resource": "*"
+        }
+    ]
+}

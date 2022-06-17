@@ -14,37 +14,38 @@ const initQueue = async (Inputdata: { emailFrom: string; message: string; name: 
       'FifoQueue': 'true',
       'DelaySeconds': "60",
       'MessageRetentionPeriod': '86400'
-      }
+    }
   }
 
- /*  try {
-    let res_create_queue = await sqs.createQueue(params).promise(); */
+  try {
+
+    let res_create_queue = await sqs.createQueue(params).promise();
+
     try {
 
-      let res_send = await send_msg(sqs, "https://sqs.us-east-1.amazonaws.com/531706640264/send_email.fifo", Inputdata);
+      let res_send = await send_msg(sqs, res_create_queue.QueueUrl, Inputdata);
 
-      return Promise.resolve({ 
+      return Promise.resolve({
         success: true,
-        message: "email sended successfully", 
-        queueUrl:"https://sqs.us-east-1.amazonaws.com/531706640264/send_email.fifo", 
+        message: "Message added in the Queue",
         data: res_send
       });
 
     } catch (error) {
       console.error(error);
 
-      return Promise.reject({ 
+      return Promise.reject({
         success: false,
-        message: 'Unable to add this message in the queue',
-        queueUrl:"https://sqs.us-east-1.amazonaws.com/531706640264/send_email.fifo",
+        message: 'Unable to add message in the queue',
         data: error,
       });
     }
-/*  } catch (error) {
 
-    return { success: false, message: "Unable to create this queue", data: error }
-  } */
-} 
+  } catch (error) {
+
+    return { success: false, message: "Unable to initialise the queue", data: error }
+  }
+}
 
 
 export default initQueue;

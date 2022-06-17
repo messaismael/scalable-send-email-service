@@ -1,12 +1,18 @@
-# Send Message Queue
+# Scalable Send Email Service
 
 
 ## Getting started
 
-**Send Message Queue Service** 
+**Scalable Send Email Service**
 
-
-## Deploy
+### Tools
+ - **Aws ses**
+ - **Aws sqs**
+ - **Aws lambda**
+ - **ClaudiaJs**
+ - **TypeScript**
+ 
+### Deploy
   
   To create your function, you can use the following command before this you should delete the  **claudia.json**  file.
   ```

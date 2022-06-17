@@ -1,0 +1,32 @@
+{
+  "name": "receive-msg-service",
+  "version": "1.0.0",
+  "description": "A lambda function that receive message form sqs and send an email containing this message",
+  "main": "build/index",
+  "files": [
+    "build/**/*.*",
+    "package.json"
+  ],
+  "scripts": {
+    "create": "tsc && claudia create --api-module build/index --region us-east-1 --policies policies",
+    "deploy:dev": "tsc && claudia update --version dev --set-env-from-json dev.json",
+    "deploy:prod": "tsc && claudia update --version prod --set-env-from-json prod.json",
+    "delete": "claudia destroy",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ismael Messa",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.1085.0",
+    "claudia-api-builder": "^4.1.2",
+    "typescript": "^4.6.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/messaismael/send-email-service.git"
+  },
+  "homepage": "https://github.com/messaismael/send-email-service#readme",
+  "devDependencies": {
+    "@types/node": "^17.0.21"
+  }
+}
