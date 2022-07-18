@@ -18,16 +18,14 @@ const initQueue = async (Inputdata: { emailFrom: string; message: string; name: 
   }
 
   try {
-
     let res_create_queue = await sqs.createQueue(params).promise();
 
     try {
-
       let res_send = await send_msg(sqs, res_create_queue.QueueUrl, Inputdata);
 
       return Promise.resolve({
         success: true,
-        message: "Message added in the Queue",
+        message: "Message sended to Queue",
         data: res_send
       });
 
@@ -36,7 +34,7 @@ const initQueue = async (Inputdata: { emailFrom: string; message: string; name: 
 
       return Promise.reject({
         success: false,
-        message: 'Unable to add message in the queue',
+        message: 'Unable to add message to queue',
         data: error,
       });
     }

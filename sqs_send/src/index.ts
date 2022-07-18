@@ -4,13 +4,12 @@ import initQueue from './sqs';
 const api: any = new ApiBuilder();
 
 api.get('/', (req) => {
-  return { success: true, message: "Send Email Servie is Ready" };
+  return { success: true, message: "Send to Queue Service" };
 });
 
 api.post('/mail', (req) => {
-  const { emailFrom, name, message } = req.body;
-
-  return initQueue({name: name, emailFrom: emailFrom, message: message})
+  
+  return initQueue({...req.body})
     .then((res) => {
       return res;
     }).catch((err) => {

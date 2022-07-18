@@ -9,12 +9,15 @@ type Data = {
 
 const send_msg = (sqs: SQS, queueUrl: string, inputData: Data) => {
 
-  console.log("data", inputData);
   let params: SendMessageRequest = {
     MessageAttributes: {
       "Name": {
         DataType: "String",
         StringValue: inputData.name
+      },
+      "EmailFrom": {
+        DataType: "String",
+        StringValue: inputData.emailFrom
       }
     },
     MessageBody: JSON.stringify(inputData),
