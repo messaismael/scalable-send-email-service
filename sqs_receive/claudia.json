@@ -1,0 +1,7 @@
+{
+  "lambda": {
+    "role": "sqs-receive-service-executor",
+    "name": "sqs-receive-service",
+    "region": "us-east-1"
+  }
+}

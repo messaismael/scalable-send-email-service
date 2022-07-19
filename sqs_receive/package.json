@@ -17,6 +17,7 @@
   "author": "Ismael Messa",
   "license": "ISC",
   "dependencies": {
+    "aws-lambda": "^1.0.7",
     "aws-sdk": "^2.1085.0",
     "claudia-api-builder": "^4.1.2",
     "typescript": "^4.6.2"
