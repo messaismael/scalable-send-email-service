@@ -29,7 +29,7 @@ const sesSend= (formData: FormData): Promise<PromiseResult<SES.SendEmailResponse
       Body: {
         Text: { Data: "From Contact: " + name + "\n\n\n" + message },
       },
-      Subject: { Data: "Contacted from Sem-email-service"},
+      Subject: { Data: "Contacted from the email sending service"},
     },
     Source: emailFrom,
   };

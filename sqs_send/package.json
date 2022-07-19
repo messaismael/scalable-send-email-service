@@ -8,7 +8,7 @@
     "package.json"
   ],
   "scripts": {
-    "create": "tsc && claudia create --api-module build/index --region us-east-1 --policies policies",
+    "create": "tsc && claudia create --api-module build/index --region us-east-1 --policies policies --set-env-from-json env.json",
     "deploy:dev": "tsc && claudia update --version dev --set-env-from-json dev.json",
     "deploy:prod": "tsc && claudia update --version prod --set-env-from-json prod.json",
     "delete": "claudia destroy",

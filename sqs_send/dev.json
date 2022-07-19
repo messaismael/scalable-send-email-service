@@ -1,5 +1,5 @@
 {
   "NODE_ENV": "dev",
   "TO_EMAILS": "messaismael01@gmail.com",
-  "QUEUE_NAME": "send_email"
+  "QUEUE_NAME": "email_queue"
 }

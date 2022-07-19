@@ -1,4 +1,4 @@
-import { SQS, AWSError } from 'aws-sdk';
+import { SQS } from 'aws-sdk';
 import { SendMessageRequest } from 'aws-sdk/clients/sqs';
 
 type Data = {
@@ -10,16 +10,6 @@ type Data = {
 const send_msg = (sqs: SQS, queueUrl: string, inputData: Data) => {
 
   let params: SendMessageRequest = {
-    MessageAttributes: {
-      "Name": {
-        DataType: "String",
-        StringValue: inputData.name
-      },
-      "EmailFrom": {
-        DataType: "String",
-        StringValue: inputData.emailFrom
-      }
-    },
     MessageBody: JSON.stringify(inputData),
     MessageDeduplicationId: inputData.emailFrom.split("@")[0],
     MessageGroupId: "FifoGroup",

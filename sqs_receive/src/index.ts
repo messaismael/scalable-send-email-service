@@ -1,6 +1,7 @@
 import { Context, APIGatewayEvent } from 'aws-lambda';
 
 import sesSend from "./ses";
+import resend_in_queue from './sqs';
 
 const handler = async function (event: APIGatewayEvent, context: Context) {
   console.log("event", event);
@@ -13,10 +14,16 @@ const handler = async function (event: APIGatewayEvent, context: Context) {
 
     try {
       let sesRes = await sesSend(formData);
-      console.log("response", {success:true, messaage:'email sended', data:sesRes});
+      console.log("Success", { message: 'Email sended' });
     } catch (err) {
-      console.error(err);
-      // do something
+      console.error("Error ses send", err);
+      try {
+        let sqsBack = await resend_in_queue(formData);
+
+        console.log("Success", { message: "Resended in Queue" });
+      } catch (error) {
+        console.error("Error sqs send back", err);
+      }
     }
   }
 
