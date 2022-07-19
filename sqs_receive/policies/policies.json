@@ -12,15 +12,10 @@
             "Resource": "*"
         },
         {
-            "Sid": "VisualEditor0",
+            "Sid": "VisualEditor1",
             "Effect": "Allow",
             "Action": [
-                "sqs:ListQueues",
-                "sqs:GetQueueUrl",
-                "sqs:ListDeadLetterSourceQueues",
-                "sqs:ReceiveMessage",
-                "sqs:GetQueueAttributes",
-                "sqs:ListQueueTags"
+                "sqs:*"
             ],
             "Resource": "*"
         }

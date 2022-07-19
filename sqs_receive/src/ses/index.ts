@@ -1,0 +1,40 @@
+import { SES, AWSError } from 'aws-sdk';
+import { SendEmailRequest } from 'aws-sdk/clients/ses';
+import { PromiseResult } from 'aws-sdk/lib/request';
+import { TO_EMAILS } from '../config';
+
+let ses = new SES({ region: "us-east-1" });
+
+type FormData = {
+  emailFrom: string;
+  message:string;
+  name:string;
+}
+
+/**
+ * @name sesSend
+ * @param {FormData}
+ * @returns {Promise{*}}
+ * @author messaismael
+*/
+const sesSend= (formData: FormData): Promise<PromiseResult<SES.SendEmailResponse, AWSError>> => {
+
+  const { emailFrom, message, name} = formData;
+  
+  var params: SendEmailRequest = {
+    Destination: {
+      ToAddresses: TO_EMAILS,
+    },
+    Message: {
+      Body: {
+        Text: { Data: "From Contact: " + name + "\n\n\n" + message },
+      },
+      Subject: { Data: "Contacted from Sem-email-service"},
+    },
+    Source: emailFrom,
+  };
+
+  return ses.sendEmail(params).promise();
+}
+
+export default sesSend;

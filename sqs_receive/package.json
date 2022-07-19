@@ -1,14 +1,14 @@
 {
-  "name": "receive-msg-service",
+  "name": "sqs-receive-service",
   "version": "1.0.0",
-  "description": "A lambda function that receive message form sqs and send an email containing this message",
+  "description": "A lambda function that receive message form sqs and send an email",
   "main": "build/index",
   "files": [
     "build/**/*.*",
     "package.json"
   ],
   "scripts": {
-    "create": "tsc && claudia create --api-module build/index --region us-east-1 --policies policies",
+    "create": "tsc && claudia create --handler build/index.handler --region us-east-1 --policies policies && claudia add-sqs-event-source --queue send_email.fifo",
     "deploy:dev": "tsc && claudia update --version dev --set-env-from-json dev.json",
     "deploy:prod": "tsc && claudia update --version prod --set-env-from-json prod.json",
     "delete": "claudia destroy",
