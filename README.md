@@ -30,8 +30,9 @@ $ cd scalable-send-email-service
 ## Run
 <hr>
 
-### [1. Send service]()
-### [2. Receive service]()
+**[1. Send service]()**
+
+**[2. Receive service]()**
 
 <br>
 <br>
