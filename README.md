@@ -28,7 +28,6 @@ $ cd scalable-send-email-service
 
 
 ## Run
-<hr>
 
 **[1. Send service]()**
 
