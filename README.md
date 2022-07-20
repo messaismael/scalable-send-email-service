@@ -1,33 +1,41 @@
-# Scalable Send Email Service
+# Scalable Email Sending Service
 
 
 ## Getting started
+These are two lambda functions that allow you to send emails while avoiding the risk of failure in sending by introducing the notion of Queue with AWS SQS.
 
-**Scalable Send Email Service**
+First of all, we have a microservice that gets user data and send that as a message in the AWS Queue and another message-sending triggered microservice that receives and processes message.
 
-### Tools
- - **Aws ses**
- - **Aws sqs**
- - **Aws lambda**
+
+## Tools
+
+ - **AWS SES**
+ - **AWS SQS**
+ - **AWS lambda**
  - **ClaudiaJs**
  - **TypeScript**
- 
-### Deploy
-  
-  To create your function, you can use the following command before this you should delete the  **claudia.json**  file.
-  ```
-  $ npm run create
-  ```
 
-  To deploy your function in **dev** environment you can use:
-  ```
-  $ npm run deploy:dev
-  ```
 
-  To deploy your function in **prod** environment you can use:
-  ```
-  $ npm run deploy:prod
-  ```
+## Install
+
+```
+$ git clone https://github.com/messaismael/scalable-send-email-service.git
+$ cd scalable-send-email-service
+```
+
+## Configs
+
+
+
+## Run
+<hr>
+
+### [1. Send service]()
+### [2. Receive service]()
+
+<br>
+<br>
+<br>
 
 ### Author
 
