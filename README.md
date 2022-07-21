@@ -18,23 +18,34 @@ First of all, we have a microservice that gets user data and send that as a mess
 
 ## Install
 
-```
-$ git clone https://github.com/messaismael/scalable-send-email-service.git
-$ cd scalable-send-email-service
-```
+
+    $ git clone https://github.com/messaismael/scalable-send-email-service.git
+    $ cd scalable-send-email-service
+
+1 - send_service
+
+    $ cd send_service
+    $ npm install
+
+
+2 - send_service
+
+    $ cd receive_service
+    $ npm install
 
 ## Configs
 
+This project is powered by claudiaJS, so to propely configure it you can follow [this](https://claudiajs.com/tutorials/installing.html)
+
+Also fill the en
 
 
-## Run
+## Deploy
 
-**[1. Send service]()**
+**[1. Send service](/send_service/README.md)**
 
-**[2. Receive service]()**
+**[2. Receive service](/receive_service/README.md)**
 
-<br>
-<br>
 <br>
 
 ### Author
