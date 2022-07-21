@@ -37,7 +37,6 @@ First of all, we have a microservice that gets user data and send that as a mess
 
 This project is powered by claudiaJS, so to propely configure it you can follow [this](https://claudiajs.com/tutorials/installing.html)
 
-Also fill the en
 
 
 ## Deploy
