@@ -1,11 +1,11 @@
 {
   "lambda": {
-    "role": "sqs-send-service-executor",
-    "name": "sqs-send-service",
+    "role": "send-service-executor",
+    "name": "send-service",
     "region": "us-east-1"
   },
   "api": {
-    "id": "to4k6lfe4e",
+    "id": "65ctusp057",
     "module": "build/index"
   }
 }

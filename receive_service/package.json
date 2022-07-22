@@ -1,7 +1,7 @@
 {
-  "name": "sqs-receive-service",
+  "name": "receive-service",
   "version": "1.0.0",
-  "description": "A lambda function that receive message form sqs and send an email",
+  "description": "A lambda function that receive message from sqs and send an email",
   "main": "build/index",
   "files": [
     "build/**/*.*",
@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "create": "tsc && claudia create --handler build/index.handler --region us-east-1 --policies policies --set-env-from-json env.json",
-    "add:trigger":"claudia add-sqs-event-source --queue email_queue.fifo",
+    "add:trigger": "dotenv -- cross-var claudia add-sqs-event-source --queue %QUEUE_NAME%",
     "deploy:dev": "tsc && claudia update --version dev --set-env-from-json dev.json",
     "deploy:prod": "tsc && claudia update --version prod --set-env-from-json prod.json",
     "delete": "claudia destroy",
@@ -21,13 +21,15 @@
     "aws-lambda": "^1.0.7",
     "aws-sdk": "^2.1085.0",
     "claudia-api-builder": "^4.1.2",
+    "cross-var": "^1.1.0",
+    "dotenv-cli": "^6.0.0",
     "typescript": "^4.6.2"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/messaismael/send-email-service.git"
+    "url": "git+https://github.com/messaismael/scalable-send-email-service.git"
   },
-  "homepage": "https://github.com/messaismael/send-email-service#readme",
+  "homepage": "https://github.com/messaismael/scalable-send-email-service#readme",
   "devDependencies": {
     "@types/node": "^17.0.21"
   }

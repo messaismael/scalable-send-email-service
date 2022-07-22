@@ -8,7 +8,7 @@ let sqs = new SQS({ region: "us-east-1" });
 const delete_msg = async (receiptHandle: string) => {
 
   var GetQUrlparms: GetQueueUrlRequest = {
-    QueueName: QUEUE_NAME + '.fifo'
+    QueueName: QUEUE_NAME
   }
 
   try {

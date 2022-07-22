@@ -6,9 +6,9 @@
   ```
   $ npm run create
   ```
-  Set up SQS event triggers, to do this, you must provide the same queue name followed by the suffix **.fifo** in the **package.json** as below firstly.
+  Set up SQS event triggers, to do this, you must provide the same queue name followed by the suffix ``.fifo`` in the ``.env`` file as below firstly.
 
-  >"add:trigger":"claudia add-sqs-event-source --queue email_queue.fifo",
+  > QUEUE_NAME=email_queue.fifo
 
     $ npm run add:trigger
 

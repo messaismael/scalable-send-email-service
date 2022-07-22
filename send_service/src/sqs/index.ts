@@ -9,7 +9,7 @@ AWS.config.logger = console;
 const initQueue = async (Inputdata: { emailFrom: string; message: string; name: string; }) => {
 
   var params: CreateQueueRequest = {
-    QueueName: QUEUE_NAME + '.fifo',
+    QueueName: QUEUE_NAME,
     Attributes: {
       'FifoQueue': 'true',
       'DelaySeconds': "60",

@@ -1,5 +1,5 @@
 {
-  "name": "sqs-send-service",
+  "name": "send-service",
   "version": "1.0.0",
   "description": "A lambda function that send message to AWS sqs",
   "main": "build/index",
