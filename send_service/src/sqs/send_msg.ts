@@ -11,7 +11,7 @@ const send_msg = (sqs: SQS, queueUrl: string, inputData: Data) => {
 
   let params: SendMessageRequest = {
     MessageBody: JSON.stringify(inputData),
-    MessageDeduplicationId: inputData.emailFrom.split("@")[0],
+    MessageDeduplicationId: Buffer.from(inputData.emailFrom).toString('base64'),
     MessageGroupId: "FifoGroup",
     QueueUrl: queueUrl
   };
