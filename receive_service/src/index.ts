@@ -1,29 +1,29 @@
 import { Context, APIGatewayEvent } from 'aws-lambda';
 
 import sesSend from "./ses";
-import resend_in_queue from './sqs';
+import delete_msg from './delete_msg';
 
 const handler = async function (event: APIGatewayEvent, context: Context) {
   console.log("event", event);
   const { Records } = event;
 
   for (let i = 0; i < Records.length; i++) {
-    var formData = JSON.parse(Records[i].body || '{}');
-
-    console.log("form data", formData);
+    var record = Records[i];
+    var formData = JSON.parse(record.body || '{}');
 
     try {
       let sesRes = await sesSend(formData);
       console.log("Success", { message: 'Email sended' });
-    } catch (err) {
-      console.error("Error ses send", err);
-      try {
-        let sqsBack = await resend_in_queue(formData);
 
-        console.log("Success", { message: "Resended in Queue" });
-      } catch (error) {
-        console.error("Error sqs send back", err);
+      try {
+        let deleteRes = await delete_msg(record.receiptHandle);
+
+        console.log("Success", { message: "Message removed from queue" });
+      } catch (err) {
+        console.error("error deleting message", err);
       }
+    } catch (err) {
+      console.error("error sending via ses", err);
     }
   }
 
