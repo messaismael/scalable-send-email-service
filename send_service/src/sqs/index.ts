@@ -1,4 +1,4 @@
-import AWS, { SQS, AWSError } from 'aws-sdk';
+import AWS, { SQS } from 'aws-sdk';
 import { CreateQueueRequest } from 'aws-sdk/clients/sqs';
 import { QUEUE_NAME } from '../config';
 import send_msg from './send_msg';

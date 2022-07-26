@@ -4,13 +4,8 @@
         {
             "Effect": "Allow",
             "Action": [
-                "sqs:DeleteMessage",
-                "sqs:ChangeMessageVisibility",
-                "sqs:PurgeQueue",
-                "sqs:DeleteQueue",
-                "sqs:SendMessage",
                 "sqs:CreateQueue",
-                "sqs:SetQueueAttributes"
+                "sqs:SendMessage"
             ],
             "Resource": "*"
         }
