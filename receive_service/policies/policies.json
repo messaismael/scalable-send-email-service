@@ -15,7 +15,9 @@
             "Sid": "VisualEditor1",
             "Effect": "Allow",
             "Action": [
-                "sqs:*"
+                "sqs:GetQueueUrl",
+                "sqs:ReceiveMessage",
+                "sqs:DeleteMessage"
             ],
             "Resource": "*"
         }
