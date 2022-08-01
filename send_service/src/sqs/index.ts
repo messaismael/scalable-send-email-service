@@ -6,12 +6,13 @@ import send_msg from './send_msg';
 let sqs = new SQS({ region: "us-east-1" });
 AWS.config.logger = console;
 
+let dynamoDb = new AWS.DynamoDB.DocumentClient();
+
 const initQueue = async (Inputdata: { emailFrom: string; message: string; name: string; }) => {
 
   var params: CreateQueueRequest = {
     QueueName: QUEUE_NAME,
     Attributes: {
-      'FifoQueue': 'true',
       'DelaySeconds': "60",
       'MessageRetentionPeriod': '86400'
     }
@@ -23,19 +24,34 @@ const initQueue = async (Inputdata: { emailFrom: string; message: string; name: 
     try {
       let res_send = await send_msg(sqs, res_create_queue.QueueUrl, Inputdata);
 
-      return Promise.resolve({
-        success: true,
-        message: "Message sended to Queue",
-        data: res_send
-      });
+      const dbParams: AWS.DynamoDB.DocumentClient.PutItemInput = {
+        TableName: 'sqsmessagedb',
+        Item: {
+          messageId: res_send.MessageId,
+          emailSended: "false"
+        }
+      }
 
-    } catch (error) {
-      console.error(error);
+      try {
+        await dynamoDb.put(dbParams).promise() // save messageId and Status in DynamoDB
+
+        return Promise.resolve({
+          success: true,
+          message: "Message sended to Queue",
+          data: res_send.MessageId
+        });
+
+      } catch (err) {
+        console.log("Error put dynamoDB", err);
+      }
+
+    } catch (err) {
+      console.error(err);
 
       return Promise.reject({
         success: false,
         message: 'Unable to add message to queue',
-        data: error,
+        data: err
       });
     }
 

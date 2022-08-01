@@ -8,6 +8,13 @@
                 "sqs:SendMessage"
             ],
             "Resource": "*"
-        }
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+              "dynamodb:PutItem"
+            ],
+            "Resource": "*"
+          }
     ]
 }
