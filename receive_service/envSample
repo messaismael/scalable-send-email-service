@@ -1,1 +1,1 @@
-QUEUE_NAME=email_queue.fifo
+QUEUE_NAME=email_queue

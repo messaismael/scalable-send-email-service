@@ -20,6 +20,14 @@
                 "sqs:DeleteMessage"
             ],
             "Resource": "*"
-        }
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+              "dynamodb:GetItem",
+              "dynamodb:PutItem"
+            ],
+            "Resource": "*"
+          }
     ]
 }
