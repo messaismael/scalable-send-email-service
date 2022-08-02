@@ -24,7 +24,7 @@ const handler = async function (event: APIGatewayEvent, context: Context) {
 		let msgStatus = await dynamoDb.get(params).promise();
 		console.log("message Status", msgStatus)
 
-		if (msgStatus.Item.emailSended == "false") {
+		if (msgStatus.Item && msgStatus.Item.emailSended == "false") {
 			var formData = JSON.parse(record.body || '{}');
 
 			try {
