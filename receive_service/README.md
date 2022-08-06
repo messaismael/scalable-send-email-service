@@ -1,16 +1,20 @@
 # Receive_service
 
+## Config
+  Create and `.env` file from `envSample` file.
+
 ## Deploy
   
   To create your function, you can use the following command, but firstly you should delete  **claudia.json** file.
   ```
   $ npm run create
   ```
-  Set up SQS event triggers, to do this, you must provide the same queue name followed by the suffix ``.fifo`` in the ``.env`` file as below firstly.
-
-  > QUEUE_NAME=email_queue.fifo
+  Set up SQS event triggers and create the table in DynamoDB, to do this, you must provide the same queue and table name in the ``.env`` file the run the following command.
 
     $ npm run add:trigger
+    $ npm run create:table
+
+  
 
   To deploy your function in **dev** environment you can use:
   ```
