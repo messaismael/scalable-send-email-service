@@ -1,4 +1,5 @@
 {
   "NODE_ENV": "dev",
-  "QUEUE_NAME": "email_queue"
+  "QUEUE_NAME": "email_queue",
+  "TABLE_NAME": "sqsmessagedb"
 }

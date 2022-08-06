@@ -8,7 +8,6 @@
     "package.json"
   ],
   "scripts": {
-    "create:table": "aws dynamodb create-table  --table-name sqsmessagedb  --attribute-definitions AttributeName=messageId,AttributeType=S  --key-schema AttributeName=messageId,KeyType=HASH  --provisioned-throughput ReadCapacityUnits=1,WriteCapacityUnits=1  --region us-east-1  --query TableDescription.TableArn  --output text",
     "create": "tsc && claudia create --api-module build/index --region us-east-1 --policies policies --set-env-from-json env.json",
     "deploy:dev": "tsc && claudia update --version dev --set-env-from-json dev.json",
     "deploy:prod": "tsc && claudia update --version prod --set-env-from-json prod.json",

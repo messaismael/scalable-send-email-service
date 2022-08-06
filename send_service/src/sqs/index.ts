@@ -1,6 +1,6 @@
 import AWS, { SQS } from 'aws-sdk';
 import { CreateQueueRequest } from 'aws-sdk/clients/sqs';
-import { QUEUE_NAME } from '../config';
+import { QUEUE_NAME, TABLE_NAME } from '../config';
 import send_msg from './send_msg';
 
 let sqs = new SQS({ region: "us-east-1" });
@@ -25,7 +25,7 @@ const initQueue = async (Inputdata: { emailFrom: string; message: string; name: 
       let res_send = await send_msg(sqs, res_create_queue.QueueUrl, Inputdata);
 
       const dbParams: AWS.DynamoDB.DocumentClient.PutItemInput = {
-        TableName: 'sqsmessagedb',
+        TableName: TABLE_NAME,
         Item: {
           messageId: res_send.MessageId,
           emailSended: "false"
