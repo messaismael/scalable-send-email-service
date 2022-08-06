@@ -3,6 +3,7 @@ import { Context, APIGatewayEvent } from 'aws-lambda';
 
 import sesSend from "./ses";
 import delete_msg from './delete_msg';
+import { TABLE_NAME } from './config';
 
 
 let dynamoDb = new AWS.DynamoDB.DocumentClient({region:"us-east-1"});
@@ -33,7 +34,7 @@ const handler = async function (event: APIGatewayEvent, context: Context) {
 
 				msgStatus.Item.emailSended = "true";
 				let putParams: AWS.DynamoDB.DocumentClient.PutItemInput = {
-					TableName: 'sqsmessagedb',
+					TableName: TABLE_NAME,
 					Item: { ...msgStatus.Item }
 				}
 				await dynamoDb.put(putParams).promise();
