@@ -16,7 +16,7 @@ const handler = async function (event: APIGatewayEvent, context: Context) {
 		var record = Records[i];
 
 		var params: AWS.DynamoDB.DocumentClient.GetItemInput = {
-			TableName: 'sqsmessagedb',
+			TableName: TABLE_NAME,
 			Key: {
 				messageId: record.messageId
 			}
