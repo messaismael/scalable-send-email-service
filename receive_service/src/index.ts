@@ -1,9 +1,9 @@
 import AWS from 'aws-sdk';
 import { Context, APIGatewayEvent } from 'aws-lambda';
 
-import sesSend from "./ses";
-import delete_msg from './delete_msg';
 import { TABLE_NAME } from './config';
+import sendEmail from './ses';
+import deleteMessage from './delete_msg';
 
 
 let dynamoDb = new AWS.DynamoDB.DocumentClient({region:"us-east-1"});
@@ -29,7 +29,7 @@ const handler = async function (event: APIGatewayEvent, context: Context) {
 			var formData = JSON.parse(record.body || '{}');
 
 			try {
-				await sesSend(formData);
+				await sendEmail(formData);
 				console.log("Success", { message: 'Email sended' });
 
 				msgStatus.Item.emailSended = "true";
@@ -40,7 +40,7 @@ const handler = async function (event: APIGatewayEvent, context: Context) {
 				await dynamoDb.put(putParams).promise();
 
 				try {
-					await delete_msg(record.receiptHandle);
+					await deleteMessage(record.receiptHandle);
 					console.log("Success", { message: "Message removed from queue" });
 				} catch (err) {
 					console.error("error deleting message", err);

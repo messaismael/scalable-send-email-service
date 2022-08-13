@@ -17,7 +17,7 @@ type FormData = {
  * @returns {Promise{*}}
  * @author messaismael
 */
-const sesSend= (formData: FormData): Promise<PromiseResult<SES.SendEmailResponse, AWSError>> => {
+const sendEmail= (formData: FormData): Promise<PromiseResult<SES.SendEmailResponse, AWSError>> => {
 
   const { emailFrom, message, name} = formData;
   
@@ -37,4 +37,4 @@ const sesSend= (formData: FormData): Promise<PromiseResult<SES.SendEmailResponse
   return ses.sendEmail(params).promise();
 }
 
-export default sesSend;
+export default sendEmail;

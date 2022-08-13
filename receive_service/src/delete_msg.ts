@@ -1,29 +1,17 @@
 import { SQS } from 'aws-sdk';
 import { DeleteMessageRequest, GetQueueUrlRequest } from 'aws-sdk/clients/sqs';
-import { QUEUE_NAME } from './config';
+import { QUEUE_URL } from './config';
 
 let sqs = new SQS({ region: "us-east-1" });
 
+const deleteMessage = async (receiptHandle: string) => {
+  
+  let params: DeleteMessageRequest = {
+    QueueUrl: QUEUE_URL,
+    ReceiptHandle: receiptHandle
+  };
 
-const delete_msg = async (receiptHandle: string) => {
-
-  var GetQUrlparms: GetQueueUrlRequest = {
-    QueueName: QUEUE_NAME
-  }
-
-  try {
-    let queueUrl = await sqs.getQueueUrl(GetQUrlparms).promise();
-
-    let params: DeleteMessageRequest = {
-      QueueUrl: queueUrl.QueueUrl,
-      ReceiptHandle: receiptHandle
-    };
-
-    return sqs.deleteMessage(params).promise();
-  } catch (err) {
-
-    return Promise.reject(err);
-  }
+  return sqs.deleteMessage(params).promise();
 }
 
-export default delete_msg;
+export default deleteMessage;
