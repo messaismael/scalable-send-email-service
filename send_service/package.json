@@ -8,6 +8,7 @@
     "package.json"
   ],
   "scripts": {
+    "create:queue": "dotenv -- cross-var aws sqs create-queue --queue-name %QUEUE_NAME% --attributes DelaySeconds=60,MessageRetentionPeriod=86400",
     "create": "tsc && claudia create --api-module build/index --region us-east-1 --policies policies --set-env-from-json env.json",
     "deploy:dev": "tsc && claudia update --version dev --set-env-from-json dev.json",
     "deploy:prod": "tsc && claudia update --version prod --set-env-from-json prod.json",
@@ -19,7 +20,9 @@
   "dependencies": {
     "aws-sdk": "^2.1085.0",
     "claudia-api-builder": "^4.1.2",
-    "typescript": "^4.6.2"
+    "typescript": "^4.6.2",
+    "cross-var": "^1.1.0",
+    "dotenv-cli": "^6.0.0"
   },
   "repository": {
     "type": "git",

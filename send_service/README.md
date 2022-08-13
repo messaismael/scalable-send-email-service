@@ -1,5 +1,14 @@
 # Send_service
 
+## Configs
+
+  If you haven't created a Queue yet, to create one, you must add a `.env` file from the `envSample` file the provide the **Queue_Name** and the following command will create a queue and retruned the queue url required in all the `env.json` and `dev.json` files 
+  >> queue url is also required in the the `receive_service` folder.
+
+  ```
+  $ npm run create:queue
+  ```
+
 ## Deploy
   
   To create your function, you can use the following command before this you should delete the  **claudia.json**  file.

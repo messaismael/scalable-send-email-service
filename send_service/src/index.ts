@@ -1,15 +1,15 @@
 import ApiBuilder from 'claudia-api-builder';
-import initQueue from './sqs';
+import sendMessageService from './service';
 
 const api: any = new ApiBuilder();
 
 api.get('/', (req) => {
-  return { success: true, message: "Send to Queue Service" };
+  return { success: true, message: "Hello World !!" };
 });
 
 api.post('/mail', (req) => {
   
-  return initQueue({...req.body})
+  return sendMessageService({...req.body})
     .then((res) => {
       return res;
     }).catch((err) => {
